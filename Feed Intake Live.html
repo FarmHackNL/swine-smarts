@@ -1,0 +1,54 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="generator" content="R package animation 2.5">
+	<title>Animations Using the R Language</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/scianimator.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css">
+
+	<script src="js/jquery-1.4.4.min.js"></script>
+	<script src="js/jquery.scianimator.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/languages/r.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+
+	<div class="scianimator"><div id="Rplot" style="display: inline-block;"></div></div>
+	<div class="scianimator" style="width: 800px; text-align: left"><pre><code class="r">## Animations generated in R version 3.3.2 (2016-10-31) using the package animation
+library(animation)
+library(plotly)
+library(ggplot2)
+library(data.table)
+library(jsonlite)
+for (d in All2[!is.na(day), unique(day)]) {
+    if (d >= 50) {
+        print(ggplot(All2[sex == "M" & group != "medium" & day <= 
+            d], aes(day, tot_FI_kg, color = group)) + geom_line(aes(group = animal), 
+            stat = "smooth", method = "loess", formula = y ~ 
+                x, alpha = 0.8, size = 1, span = 1) + geom_line(data = All2[!is.na(group) & 
+            group != "medium" & day <= d & sex == "M" & animal %in% 
+            All2[J(d, TRUE), animal]], aes(group = animal, x = day, 
+            y = tot_FI_kg), stat = "smooth", method = "loess", 
+            span = 1, formula = y ~ x, alpha = 0.8, size = 2, 
+            color = "black") + geom_text(data = All2[!is.na(group) & 
+            group != "medium" & day == d & sex == "M" & animal %in% 
+            All2[J(d, TRUE), animal]], aes(group = animal, x = day, 
+            y = tot_FI_kg, label = animal), alpha = 0.8, size = 10, 
+            hjust = -0.2, color = "black") + coord_cartesian(ylim = c(0, 
+            5), xlim = c(0, 100)) + labs(title = "Daily feed intake per animal", 
+            x = "Days", y = "Feed intake [kg]", color = "Payout group"))
+    }
+}
+## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Other packages: animation 2.5, plotly 4.5.6.9000, ggplot2 2.2.1.9000, data.table
+## 1.10.4, jsonlite 1.2</code></pre></div>
+	<script src="js/Rplot.js"></script>
+<!-- highlight R code -->
+
+</body>
+</html>
